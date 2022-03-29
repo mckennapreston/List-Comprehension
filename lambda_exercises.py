@@ -27,6 +27,8 @@ weekdays = [
     "Sunday",
 ]
 
+characters = list(filter(lambda x: (len(x) == 6), weekdays))
+print(characters)
 
 """ 3)
 remove specific words from a given list 
@@ -73,13 +75,33 @@ abc
 Elements of the said list that contain specific substring:
 []
 """
-
+firstlist = ['red', 'black', 'white', 'green', 'orange']
+substring1 = list(filter(lambda x: "ack" in x, firstlist))
+print(substring1)
+substring2 = list(filter(lambda x: "abc" in x, firstlist))
+print(substring2)
 
 """ 6)
 check whether a given string contains a capital letter, a lower case letter, a number and a minimum length of 8 characters.
 (This is like a password verification function, HINT: Python function 'any' may be useful)
 """
+password = input('Please enter a new password: ')
+password_verification = [
+    lambda x: any(x.isupper() for x in password), 
+    lambda x: any(x.islower() for x in password), 
+    lambda x: any(x.isdigit() for x in password), 
+    lambda x: any(x.isalpha() for x in password),
+    lambda x: len(x) >= 8]
 
+if(any(x.isupper() for x in password) 
+and any(x.islower() for x in password) 
+and any(x.isdigit() for x in password)
+and any(x.isalpha() for x in password) 
+and len(password) >= 8):
+
+    print("Password meets criteria.")
+else: 
+     print('Password does not meet criteria. Please enter a different password.')
 
 """ 7)
 Write a Python program to sort a list of tuples using Lambda.
@@ -90,3 +112,6 @@ original_scores = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sci
 # Expected Result:
 # [('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]
 """
+original_scores = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]
+original_scores.sort(key = lambda x: x[1])
+print(original_scores)
